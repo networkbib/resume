@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gijs Willemsen | Resume</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    background: linear-gradient(to bottom right, #f9fafb, #f3f4f6);
+    min-height: 100vh;
+}
+
+header {
+    background: linear-gradient(to right, #2563eb, #1d4ed8);
+    color: white;
+    padding: 4rem 1rem;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    position: relative;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+nav {
+    background: white;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 1rem;
+}
+
+.nav-button.active {
+    background-color: #2563eb;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav-button:not(.active) {
+    background-color: #f3f4f6;
+    color: #4b5563;
+}
+
+.nav-button:hover:not(.active) {
+    background-color: #e5e7eb;
+}
+
+.section {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s;
+    padding: 2rem 0;
+}
+
+.section.active {
+    display: block;
+    opacity: 1;
+}
+
+h2 {
+    font-size: 1.5rem;
+    color: #1f2937;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e5e7eb;
+    margin-bottom: 1.5rem;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    background: white;
+    margin: 0.5rem 0;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+ul li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.grid {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .grid-skills {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #1f2937;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.tag {
+    background: #e5e7eb;
+    color: #374151;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    transition: background-color 0.3s;
+}
+
+.tag:hover {
+    background: #d1d5db;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: white;
+    opacity: 0.9;
+    transition: opacity 0.3s;
+}
+
+.contact-item:hover {
+    opacity: 1;
+}
+
+.social-icons {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.social-icon {
+    color: white;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.social-icon:hover {
+    opacity: 1;
+}
+
+.social-icon i {
+    width: 24px;
+    height: 24px;
+}
+
+.announcement-banner {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 0.4rem 1rem;
+    font-size: 1rem;
+    font-family: 'Fira Code', monospace;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-weight: normal;
+}
+
+.announcement-banner i {
+    font-size: 1.2rem;
+}
+
+.timeline {
+    position: relative;
+    max-width: 600px;
+    margin: 20px auto;
+    padding-left: 40px;
+    border-left: 3px solid #2563eb; /* vertical timeline line */
+}
+
+.timeline-event {
+    position: relative;
+    margin-bottom: 30px;
+    padding-left: 20px;
+}
+
+/* Default circle: white with blue border */
+.timeline-event::before {
+    content: "";
+    position: absolute;
+    left: -12px;
+    top: 5px;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border: 3px solid #2563eb;
+    border-radius: 50%;
+    box-sizing: content-box;
+}
+
+/* Current job circle: solid blue */
+.timeline-event.current-job::before {
+    background-color: #2563eb;
+    border: 3px solid #2563eb;
+}
+
+.card-header i {
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+/* ==== Added merged styles for #jobs timeline ==== */
+
+#jobs {
+    background: white;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: sans-serif;
+}
+
+#jobs h2 {
+    margin-bottom: 40px;
+}
+
+#jobs .container {
+    display: grid;
+    grid-template-columns: repeat(3, 200px);
+    grid-template-rows: repeat(3, 100px);
+    column-gap: 100px;
+    row-gap: 60px;
+    position: relative;
+    max-width: none; /* override global container max-width */
+    padding: 0; /* reset padding from global container */
+}
+
+#jobs .box {
+    border: 3px solid #0b84e0;
+    border-radius: 12px;
+    width: 200px;
+    height: 100px;
+    position: relative;
+    padding: 8px 8px 8px 20px; /* left padding for icon */
+    font-size: 0.75rem;
+    line-height: 1.2;
+    background: white;
+}
+
+#jobs .box strong {
+    display: block;
+    font-size: 0.85rem;
+    margin-bottom: 2px;
+}
+
+#jobs .box em {
+    display: block;
+    font-size: 0.7rem;
+    font-style: italic;
+    margin-bottom: 6px;
+    color: #555;
+}
+
+#jobs .icon-circle {
+    background: white;
+    border: 3px solid #0b84e0;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: -16px;
+    transform: translateY(-50%);
+}
+
+#jobs .icon-circle svg {
+    color: #0b84e0;
+    width: 16px;
+    height: 16px;
+}
+
+#jobs .current-job .icon-circle {
+    background: #0b84e0;
+}
+
+#jobs .current-job .icon-circle svg {
+    color: white;
+}
+
+</style>
+
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 style="font-size: 3rem;">Gijs Willemsen</h1>
+            <h31 style="font-size: 1rem; margin-bottom: 0.5rem;">Cybersecurity & networking enthusiast | Automation & open-source advocate | Ethical hacking & system optimization</h31>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i data-lucide="globe"></i>
+                    <span style="text-decoration: none; color: inherit; cursor: default;">Netherlands</span>
+                </div>
+                <div class="contact-item">
+                    <i data-lucide="mail"></i>
+                    <a href="mailto:gijs3.willemsen@gmail.com" style="color: white; text-decoration: none;">gijs3.willemsen@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <i data-lucide="phone"></i>
+                    <a href="tel:+31623214158" style="text-decoration: none; color: inherit;">+31 6 23214158</a>
+                </div>
+            </div>
+            <div class="social-icons">
+                <a href="https://github.com/networkbib" target="_blank" class="social-icon">
+                    <i data-lucide="github"></i>
+                </a>
+                <a href="https://instagram.com/w.gijs" target="_blank" class="social-icon">
+                    <i data-lucide="instagram"></i>
+                </a>
+                <a href="https://twitter.com/networkbib" target="_blank" class="social-icon">
+                    <i data-lucide="twitter"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <div class="announcement-banner">
+        <i data-lucide="globe-lock"></i>
+        Accessible on the darkweb!!!
+    </div>
+
+    <nav>
+        <div class="container">
+            <div class="nav-buttons">
+                <button class="nav-button active" onclick="showSection('jobs')">Jobs</button>
+                <button class="nav-button" onclick="showSection('certificates')">Certificates</button>
+                <button class="nav-button" onclick="showSection('projects')">Practises</button>
+                <button class="nav-button" onclick="showSection('skills')">Skills</button>
+                <button class="nav-button" onclick="showSection('languages')">Languages</button>
+                <button class="nav-button" onclick="showSection('interests')">Interests</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section id="projects" class="section">
+            <h2>Notable Practises</h2>
+            <div class="grid">
+                <!-- Project cards -->
+                <div class="card">
+                    <div class="card-header">
+                        <i data-lucide="network" style="color: #2563eb;"></i>
+                        <h3 class="card-title">Network Security Automation</h3>
+                    </div>
+                    <p style="color: #6b7280; font-size: 0.875rem;">January 2024</p>
+                    <p style="color: #4b5563; margin: 1rem 0;">
+                        Developed and deployed automated scripts for configuring and securing VPNs, routers, and switches across multiple devices. Integrated firewall and NAT settings for enhanced security.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">VPN</span>
+                        <span class="tag">Network Security</span>
+                        <span class="tag">Automation</span>
+                        <span class="tag">TCP/IP</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <i data-lucide="code" style="color: #2563eb;"></i>
+                        <h3 class="card-title">Python Scripting for System Automation</h3>
+                    </div>
+                    <p style="color: #6b7280; font-size: 0.875rem;">March 2024</p>
+                    <p style="color: #4b5563; margin: 1rem 0;">
+                        Created Python scripts to automate system processes, including backups, software updates, and configuration management. Optimized workflow efficiency and reduced manual intervention.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Automation</span>
+                        <span class="tag">System Administration</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <i data-lucide="terminal" style="color: #2563eb;"></i>
+                        <h3 class="card-title">Hack The Box Challenges</h3>
+                    </div>
+                    <p style="color: #6b7280; font-size: 0.875rem;">January 2024</p>
+                    <p style="color: #4b5563; margin: 1rem 0;">
+                        Participated in multiple Capture The Flag (CTF) competitions, solving real-world cybersecurity challenges related to penetration testing, vulnerability scanning, and ethical hacking.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">CTF</span>
+                        <span class="tag">Penetration Testing</span>
+                        <span class="tag">Cybersecurity</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <i data-lucide="server" style="color: #2563eb;"></i>
+                        <h3 class="card-title">OpenMediaVault Server Setup</h3>
+                    </div>
+                    <p style="color: #6b7280; font-size: 0.875rem;">May 2024</p>
+                    <p style="color: #4b5563; margin: 1rem 0;">
+                        Set up and configured a home server using OpenMediaVault for data storage and sharing. Focused on hardware configuration, system troubleshooting, and ensuring secure file access.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Server Setup</span>
+                        <span class="tag">Storage</span>
+                        <span class="tag">Security</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <i data-lucide="cpu" style="color: #2563eb;"></i>
+                        <h3 class="card-title">Hardware Tinkering & System Troubleshooting</h3>
+                    </div>
+                    <p style="color: #6b7280; font-size: 0.875rem;">July 2023</p>
+                    <p style="color: #4b5563; margin: 1rem 0;">
+                        Built and upgraded several PC and server systems, handling hardware diagnostics, firmware updates, and system optimizations. Specialized in open-source software integration and IT infrastructure setups.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Hardware</span>
+                        <span class="tag">Server Setup</span>
+                        <span class="tag">System Troubleshooting</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <i data-lucide="bug" style="color: #2563eb;"></i>
+                        <h3 class="card-title">Website Accessible on the Dark Web using Tor</h3>
+                    </div>
+                    <p style="color: #6b7280; font-size: 0.875rem;">February 2025</p>
+                    <p style="color: #4b5563; margin: 1rem 0;">
+                        Enabled access to the personal website on the dark web using Tor, ensuring secure and anonymous browsing. Configured a Tor hidden service for dark web access.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">dark web</span>
+                        <span class="tag">Tor</span>
+                        <span class="tag">hidden service</span>
+                        <span class="tag">privacy</span>
+                        <span class="tag">anonymous browsing</span>
+                        <span class="tag">security</span>
+                    </div>
+                </div>                
+
+            </div>
+        </section>
+
+        <section id="skills" class="section">
+            <h2>Technical Skills</h2>
+            <div class="grid grid-skills">
+                <div class="card">
+                    <div class="card-header">
+                        <i data-lucide="zap" style="color: #2563eb;"></i>
+                        <h3 class="card-title">Adaptability & Learning Speed</h3>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">Fast Learner</span>
+                        <span class="tag">Curious by Nature</span>
+                        <span class="tag">Self-Taught</span>
+                        <span class="tag">Problem Solver</span>
+                        <span class="tag">Tech Agnostic</span>
+                        <span class="tag">Knowledge Hungry</span>
+                        <span class="tag">You Can Throw Anything at Me</span>
+                        <span class="tag">I Will Learn It</span>
+                    </div>
+                </div>                
+                <div class="card">
+                    <div class="card-header">
+                        <i data-lucide="network" style="color: #2563eb;"></i>
+                        <h3 class="card-title">Networking</h3>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">Routers</span>
+                        <span class="tag">Switches</span>
+                        <span class="tag">VPN</span>
+                        <span class="tag">TCP/IP</span>
+                        <span class="tag">Firewalls</span>
+                        <span class="tag">NAT</span>
+                        <span class="tag">DHCP</span>
+                        <span class="tag">DNS</span>
+                        <span class="tag">IP Addressing</span>
+                        <span class="tag">Routing Protocols</span>
+                        <span class="tag">VLANs</span>
+                        <span class="tag">Network Security</span>
+                        <span class="tag">Twingate</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <i data-lucide="code" style="color: #2563eb;"></i>
+                        <h3 class="card-title">Programming</h3>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">SQL</span>
+                        <span class="tag">Bash</span>
+                        <span class="tag">Javascript</span>
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <i data-lucide="terminal" style="color: #2563eb;"></i>
+                        <h3 class="card-title">Cybersecurity</h3>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">Penetration Testing</span>
+                        <span class="tag">Ethical Hacking</span>
+                        <span class="tag">OSINT</span>
+                        <span class="tag">Network Security</span>
+                        <span class="tag">Exploitation Techniques</span>
+                        <span class="tag">Vulnerability Scanning</span>
+                        <span class="tag">Security Automation</span>
+                        <span class="tag">Social Engineering</span>
+                        <span class="tag">Payload Development</span>
+                        <span class="tag">Nmap</span>
+                        <span class="tag">Metasploit</span>
+                        <span class="tag">Burp Suite</span>
+                        <span class="tag">Wireshark</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <i data-lucide="settings" style="color: #2563eb;"></i>
+                        <h3 class="card-title">System Administration</h3>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">Server Configuration</span>
+                        <span class="tag">System Optimization</span>
+                        <span class="tag">Troubleshooting</span>
+                        <span class="tag">Linux Administration</span>
+                        <span class="tag">Windows Server</span>
+                        <span class="tag">Backup Management</span>
+                        <span class="tag">User Management</span>
+                        <span class="tag">File System Management</span>
+                        <span class="tag">Network Configuration</span>
+                        <span class="tag">Firewall Setup</span>
+                        <span class="tag">Service Monitoring</span>
+                        <span class="tag">OpenMediaVault</span>
+                        <span class="tag">Docker Deployment</span>
+                        <span class="tag">Process Management</span>
+                        <span class="tag">Cron Jobs</span>
+                        <span class="tag">Log Analysis</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <i data-lucide="cpu" style="color: #2563eb;"></i>
+                        <h3 class="card-title">Hardware Tinkering</h3>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">Server Setup</span>
+                        <span class="tag">Hardware Troubleshooting</span>
+                        <span class="tag">System Optimization</span>
+                        <span class="tag">Diagnostics</span>
+                        <span class="tag">Firmware Upgrades</span>
+                        <span class="tag">PC Building</span>
+                        <span class="tag">Hardware Configuration</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="languages" class="section">
+            <h2>Languages</h2>
+            <div class="grid">
+                <!-- Dutch Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <i data-lucide="languages" style="color: #2563eb;"></i>
+                        <h3 class="card-title">Dutch</h3>
+                    </div>
+                    <p style="color: #4b5563;">Native proficiency</p>
+                    <div style="margin-top: 0.5rem;">
+                        <strong>Speaking:</strong>
+                        <span style="color: #2563eb;">★★★★★</span>
+                    </div>
+                    <div>
+                        <strong>Writing:</strong>
+                        <span style="color: #2563eb;">★★★★★</span>
+                    </div>
+                </div>
+        
+                <!-- English Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <i data-lucide="languages" style="color: #2563eb;"></i>
+                        <h3 class="card-title">English</h3>
+                    </div>
+                    <p style="color: #4b5563;">Professional working proficiency</p>
+                    <div style="margin-top: 0.5rem;">
+                        <strong>Speaking:</strong>
+                        <span style="color: #2563eb;">★★★★☆</span>
+                    </div>
+                    <div>
+                        <strong>Writing:</strong>
+                        <span style="color: #2563eb;">★★★★☆</span>
+                    </div>
+                </div>
+            </div>
+        </section>        
+
+        <section id="certificates" class="section">
+            <h2>Certificates</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-header">
+                        <i data-lucide="award" style="color: #2563eb;"></i>
+                        <h3 class="card-title">Introduction to Cybersecurity</h3>
+                    </div>
+                    <p style="color: #4b5563;">This certification is verified via Credly.</p>
+                    <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="430708bb-a1c1-4428-bb54-97adbd1e4f39" data-share-badge-host="https://www.credly.com"></div>
+                    <script type="text/javascript" async src="https://cdn.credly.com/assets/utilities/embed.js"></script>
+                </div>
+            </div>
+        </section>
+        
+        <section id="interests" class="section">
+            <h2>Interests</h2>
+            <div class="grid">
+
+                <div class="card">
+                    <div class="card-header">
+                        <i data-lucide="laptop" style="color: #2563eb;"></i>
+                        <h3 class="card-title">ICT</h3>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">I like almost everything in ICT</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <i data-lucide="palette" style="color: #2563eb;"></i>
+                        <h3 class="card-title">Design</h3>
+                    </div>
+                    <div class="tags">
+                        <span class="tag">Logo Design</span>
+                        <span class="tag">Digital Drawing</span>
+                        <span class="tag">Icon Design</span>
+                        <span class="tag">Creative Projects</span>
+                        <span class="tag">Digital Art</span>
+                    </div>
+                </div>
+            </div>
+
+    </main>
+    <section id="jobs" class="section active">
+        <h2>Timeline of Jobs</h2>
+        <div class="container">
+          <!-- Top Row -->
+          <div class="box current-job" style="grid-row: 1; grid-column: 1">
+            <div class="icon-circle"><i data-lucide="briefcase"></i></div>
+            <strong>Software Engineer</strong>
+            <em>TechCorp Inc (Jan 2021 - Present)</em>
+            Built scalable full-stack applications using React and Node.js.
+          </div>
+          <div class="box current-job" style="grid-row: 1; grid-column: 2">
+            <div class="icon-circle"><i data-lucide="briefcase"></i></div>
+            <strong>Frontend Developer</strong>
+            <em>Designify (Jan 2020 - Dec 2020)</em>
+            Designed user interfaces with a focus on UX and accessibility.
+          </div>
+          <div class="box" style="grid-row: 1; grid-column: 3">
+            <div class="icon-circle"><i data-lucide="briefcase"></i></div>
+            <strong>Intern Developer</strong>
+            <em>StartApps (Jun 2019 - Dec 2019)</em>
+            Assisted in frontend bug fixes and automated testing scripts.
+          </div>
+      
+          <!-- Middle Row -->
+          <div class="box" style="grid-row: 2; grid-column: 1">
+            <div class="icon-circle"><i data-lucide="briefcase"></i></div>
+            <strong>IT Assistant</strong>
+            <em>UniTech (Sep 2018 - May 2019)</em>
+            Provided tech support and maintained computer lab systems.
+          </div>
+          <div class="box" style="grid-row: 2; grid-column: 2">
+            <div class="icon-circle"><i data-lucide="briefcase"></i></div>
+            <strong>Web Developer Intern</strong>
+            <em>SiteForge (Jun 2018 - Aug 2018)</em>
+            Developed landing pages and handled CMS integration.
+          </div>
+          <div class="box" style="grid-row: 2; grid-column: 3">
+            <div class="icon-circle"><i data-lucide="briefcase"></i></div>
+            <strong>Support Agent</strong>
+            <em>QuickHelp (Jan 2018 - May 2018)</em>
+            Managed customer issues through email and ticketing systems.
+          </div>
+      
+          <!-- Bottom Row -->
+          <div class="box" style="grid-row: 3; grid-column: 1">
+            <div class="icon-circle"><i data-lucide="briefcase"></i></div>
+            <strong>Sales Associate</strong>
+            <em>RetailBox (Jun 2017 - Dec 2017)</em>
+            Assisted customers and managed inventory systems.
+          </div>
+          <div class="box" style="grid-row: 3; grid-column: 2">
+            <div class="icon-circle"><i data-lucide="briefcase"></i></div>
+            <strong>Freelance Coder</strong>
+            <em>Self-Employed (Jan 2017 - May 2017)</em>
+            Delivered small business websites and automation scripts.
+          </div>
+          <div class="box" style="grid-row: 3; grid-column: 3">
+            <div class="icon-circle"><i data-lucide="briefcase"></i></div>
+            <strong>Student Assistant</strong>
+            <em>University IT (Sep 2016 - Dec 2016)</em>
+            Helped with lab equipment setup and software installations.
+          </div>
+        </div>
+    <!-- Horizontal lines (connected with shorter left side) -->
+    <div class="line" style="top: 58px; left: 233px; width: 60px;"></div>
+    <div class="line" style="top: 58px; left: 533px; width: 60px;"></div>
+
+    <div class="line" style="top: 218px; left: 233px; width: 60px;"></div>
+    <div class="line" style="top: 218px; left: 533px; width: 60px;"></div>
+
+    <div class="line" style="top: 378px; left: 233px; width: 60px;"></div>
+    <div class="line" style="top: 378px; left: 533px; width: 60px;"></div>
+
+    <!-- Top-right to Middle-right connector -->
+    <div class="line" style="top: 58px; left: 833px; width: 33px;"></div>
+    <div class="line" style="top: 58px; left: 866px; width: 3px; height: 160px;"></div>
+    <div class="line" style="top: 215px; left: 833px; width: 33px;"></div>
+
+    <!-- Middle-left to Bottom-left connector -->
+    <div class="line" style="top: 218px; left: -33px; width: 33px;"></div>
+    <div class="line" style="top: 218px; left: -33px; width: 3px; height: 160px;"></div>
+    <div class="line" style="top: 378px; left: -33px; width: 33px;"></div>
+      </section>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            } else {
+                console.error("Lucide library failed to load.");
+            }
+        });
+
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            document.querySelectorAll('.nav-button').forEach(button => button.classList.remove('active'));
+            document.querySelector(`button[onclick="showSection('${sectionId}')"]`).classList.add('active');
+        }
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+          if (typeof lucide !== 'undefined') {
+             lucide.createIcons();
+            } else {
+                console.error("Lucide library failed to load.");
+            }   
+        });
+
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+         document.querySelectorAll('.nav-button').forEach(button => button.classList.remove('active'));
+            document.querySelector(`button[onclick="showSection('${sectionId}')"]`).classList.add('active');
+       }
+    </script>
+</body>
+</html>
